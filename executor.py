@@ -144,6 +144,8 @@ class Executor(object):
             'stepletConsoles': []
         }
 
+        logs_last_posted_at = datetime.now()
+
         while True:
             post_logs = False
             and_break = False
