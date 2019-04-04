@@ -26,9 +26,9 @@ class Config(dict):
             'SCRIPT_PATH',
             'SHIPPABLE_API_URL',
             'BUILDER_API_TOKEN',
-            'BUILD_JOB_ID',
+            'STEPLET_ID',
             'RUN_MODE',
-            'BUILD_DIR'
+            'STEPLET_DIR'
         ]
 
         for env in expected_envs:
@@ -44,9 +44,6 @@ class Config(dict):
         elif self['RUN_MODE'] == 'dev':
             self['LOG_LEVEL'] = logging.DEBUG
 
-        # New build runner switch/params
-        self['IS_NEW_BUILD_RUNNER_SUBSCRIPTION'] = \
-            self.get('IS_NEW_BUILD_RUNNER_SUBSCRIPTION') == 'true'
         self['MAX_LOG_LINES_TO_FLUSH'] = \
             int(self.get('MAX_LOG_LINES_TO_FLUSH', 20))
         self['MAX_LOGS_FLUSH_WAIT_TIME_IN_S'] = \

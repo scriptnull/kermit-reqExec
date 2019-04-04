@@ -48,9 +48,9 @@ class ShippableAdapter(object):
             time.sleep(self._retry_interval)
             self._post(url, data)
 
-    def post_build_job_consoles(self, data):
+    def post_step_let_consoles(self, data):
         """
-        Posts stringified json of build job consoles
+        Posts stringified json of steplet consoles
         """
-        url = '{0}/buildJobConsoles'.format(self._api_url)
+        url = '{0}/stepletConsoles'.format(self._api_url)
         self._post(url, data)
