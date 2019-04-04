@@ -97,7 +97,7 @@ class Executor(object):
         """
         # We need to unset the LD_LIBRARY_PATH set by pyinstaller. This
         # will ensure the script prefers libraries on system rather
-        # than the ones bundled during steplet time.
+        # than the ones bundled during runtime.
         env = dict(os.environ)
         env.pop('LD_LIBRARY_PATH', None)
         cmd = self._config['SCRIPT_PATH']
