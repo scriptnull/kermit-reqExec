@@ -144,32 +144,6 @@ class Executor(object):
             'stepletConsoles': []
         }
 
-        # Add a hidden version notice.
-        # NOTE: Remove this once we switch to this executor completely.
-        notice_console_id = str(uuid.uuid4())
-        notice_message = 'Notice: Executor v2'
-        logs_to_post['stepletConsoles'].append({
-            'consoleId': notice_console_id,
-            'parentConsoleId': 'root',
-            'type': 'grp',
-            'message': notice_message,
-            'timestamp': Executor._get_timestamp(),
-            'isShown': False
-        })
-
-        logs_to_post['stepletConsoles'].append({
-            'consoleId': notice_console_id,
-            'parentConsoleId': 'root',
-            'type': 'grp',
-            'message': notice_message,
-            'timestamp': Executor._get_timestamp(),
-            'timestampEndedAt': Executor._get_timestamp(),
-            'isSuccess': True,
-            'isShown': False
-        })
-
-        logs_last_posted_at = datetime.now()
-
         while True:
             post_logs = False
             and_break = False
