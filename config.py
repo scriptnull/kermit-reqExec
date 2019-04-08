@@ -10,7 +10,6 @@ class Config(dict):
     """
     def __init__(self, script_path, job_envs_path):
         dict.__init__(self)
-        self['SCRIPT_PATH'] = script_path
 
         with open(job_envs_path) as job_envs:
             for env in job_envs:
@@ -23,13 +22,14 @@ class Config(dict):
                 self[key] = value
 
         expected_envs = [
-            'SCRIPT_PATH',
             'SHIPPABLE_API_URL',
             'BUILDER_API_TOKEN',
             'STEPLET_ID',
             'RUN_MODE',
             'STEPLET_DIR'
         ]
+
+        self['SCRIPT_PATH'] = script_path
 
         for env in expected_envs:
             if env not in self.keys():
