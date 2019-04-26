@@ -120,12 +120,14 @@ class Executor(object):
 
         try:
             for line in iter(proc.stdout.readline, ''):
-                is_script_success, is_complete = self._handle_console_line(line)
+                is_script_success, is_complete, exit_code = self._handle_console_line(line)
 
                 if is_script_success:
                     self.exit_code = 0
 
                 if is_complete:
+                    if not is_script_success:
+                        self.exit_code = exit_code
                     break
         except Exception as ex:
             trace = traceback.format_exc()
@@ -199,6 +201,7 @@ class Executor(object):
         """
         is_script_success = False
         is_complete = False
+        exit_code = 0
         timestamp = Executor._get_timestamp()
         line_split = line.split('|')
         if line.startswith('__SH__GROUP__START__'):
@@ -275,6 +278,10 @@ class Executor(object):
             is_script_success = True
             is_complete = True
         elif line.startswith('__SH__SCRIPT_END_FAILURE__'):
+            try:
+                exit_code = int(line_split[1])
+            except:
+                exit_code = 1
             is_script_success = False
             is_complete = True
         else:
@@ -292,7 +299,7 @@ class Executor(object):
             else:
                 self._append_to_error_buffer(line)
 
-        return is_script_success, is_complete
+        return is_script_success, is_complete, exit_code
 
     def _append_to_log_file(self, console_out):
         """
