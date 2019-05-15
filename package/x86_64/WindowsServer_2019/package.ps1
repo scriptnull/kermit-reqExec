@@ -16,12 +16,13 @@ function install_prereqs() {
   }
 }
 
-function buildReqExec() {
-  echo "building reqExec binaries"
+function build_reqExec() {
+  echo "Building reqExec binaries"
+
   pip install pyinstaller==3.3
   pip install -r requirements.txt
   python -m PyInstaller --clean --hidden-import=requests -F main.py
 }
 
 install_prereqs
-buildReqExec
+build_reqExec
