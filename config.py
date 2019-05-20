@@ -25,6 +25,7 @@ class Config(dict):
             'SHIPPABLE_API_URL',
             'BUILDER_API_TOKEN',
             'STEPLET_ID',
+            'PIPELINE_ID',
             'RUN_MODE',
             'STEPLET_DIR'
         ]

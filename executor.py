@@ -143,6 +143,7 @@ class Executor(object):
         """
         logs_to_post = {
             'stepletId': self._config['STEPLET_ID'],
+            'pipelineId': self._config['PIPELINE_ID'],
             'stepletConsoles': []
         }
 
@@ -336,6 +337,7 @@ class Executor(object):
         """
         req_body = {
             'stepletId': self._config['STEPLET_ID'],
+            'pipelineId': self._config['PIPELINE_ID'],
             'stepletConsoles': self._error_buffer
         }
         data = json.dumps(req_body)
